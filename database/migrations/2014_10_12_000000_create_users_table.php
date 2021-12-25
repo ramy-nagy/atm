@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->unsignedBigInteger('account_id')->unique();
-            $table->boolean('is_admin')->nullable();
+            $table->boolean('is_admin')->default(0);
             $table->string('role')->default('user');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

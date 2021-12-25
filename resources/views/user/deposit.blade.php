@@ -1,15 +1,7 @@
 <x-app-layout>
-  <div
-    class="row col-lg-12 d-flex align-items-stretch  p-4 one"
-    data-aos="zoom-in"
-    data-aos-delay="200"
-  >
-    <form
-      action="{{ route('user.deposit.store')}}"
-      method="post"
-      id="myForm"
-    >
-    @csrf
+  <div class="row col-lg-12 d-flex align-items-stretch  p-4 one" data-aos="zoom-in" data-aos-delay="200">
+    <form action="{{ route('user.deposit.store')}}" method="post" id="myForm">
+      @csrf
       <div class="section-title">
         <h2>Deposit</h2>
       </div>
@@ -19,33 +11,26 @@
       </div>
       <div class="form-group mb-5">
         <label class="form-lable-control h6" for="name">Amount</label>
-        <input
-          type="number"
-          min="50"
-          max="3000"
-          class="form-control"
-          name="amount"
-          id="amount"
-          required=""
-          placeholder="0"
-        />
+        <input type="number" min="50" max="3000" class="form-control" name="amount" id="amount" required=""
+          placeholder="0" />
       </div>
       @foreach ($userAccount as $account)@endforeach
       <div class="row form-group col-lg-12">
         <div class="col-lg-9">
-            <div class="col-lg-9">
-              <div class="alert alert-primary" role="alert">
-                Balance : <span class="alert-link">{{ $account->balance ?? 0}}</span> EGP
-              </div>
-              <div class="alert alert-primary" role="alert">
-                Available Balance : <span class="alert-link"> {{ $account->available_balance ?? 0}} </span> EGP
-              </div>
+          <div class="col-lg-9">
+            <div class="alert alert-primary" role="alert">
+              Balance : <span class="alert-link">{{ $account->balance ?? 0}}</span> EGP
             </div>
+            <div class="alert alert-primary" role="alert">
+              Available Balance : <span class="alert-link"> {{ $account->available_balance ?? 0}} </span> EGP
+            </div>
+          </div>
         </div>
         <div class="col-lg-3  ">
           <button type="submit" class="btn btn-primary mb-2">Confirm</button>
-          <button type="button" class="btn btn-warning mb-2" onclick="document.getElementById('myForm').reset();">Re-enter</button>
-          <a  href=" {{ route('user.dashboard')}}" type="button" class="btn btn-secondary mb-2">Go Back</a>
+          <button type="button" class="btn btn-warning mb-2"
+            onclick="document.getElementById('myForm').reset();">Re-enter</button>
+          <a href=" {{ route('user.dashboard')}}" type="button" class="btn btn-secondary mb-2">Go Back</a>
         </div>
       </div>
     </form>

@@ -16,14 +16,14 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Account ID</span>
+                                <span class="text-gray-700 dark:text-gray-400">Email</span>
 
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input 
                                     @error('email') border-red-600  focus:border-red-400
                                     focus:outline-none focus:shadow-outline-red @enderror"
                                     id="email" type="text" name="email" value="{{ old('email') }}" required
-                                    autocomplete="email" autofocus placeholder="Account ID">
+                                    autocomplete="email" autofocus placeholder="Email">
                                 @error('email')<p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>@enderror
                             </label>
                             <label class="block mt-4 text-sm">
@@ -58,7 +58,7 @@
                                
 
                             </p>
-                            <p class="mt-1">
+                            {{-- <p class="mt-1">
                                 @if (Route::has('register'))
                                 <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
                                     href="{{ route('register') }}">
@@ -67,7 +67,7 @@
                                 @endif
                                
 
-                            </p>
+                            </p> --}}
                     </div>
                 </div>
             </div>

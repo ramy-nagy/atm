@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Livewire\ShowUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,32 +22,29 @@ Route::get('/home',     function (){
 })->name('home');
 
 
-Route::get('admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'admin'])->name('admin.dashboard');
+// Route::get('admin/dashboard', function () {
+//     return view('admin.dashboard');
+// })->middleware(['auth', 'admin'])->name('admin.dashboard');
 
 Route::middleware(['auth'])->group( function() {
     // users
         Route::name('user.')->prefix('user')->middleware(['user'])->group(function () {
         Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
-
-
-
         Route::resource('withdraw', 'App\Http\Controllers\WithdrawController');
         Route::resource('deposit', 'App\Http\Controllers\DepositController');
         Route::resource('transaction', 'App\Http\Controllers\TransactionController');
-    });
-        // // admins
-    // Route::name('admin.')->prefix('admin')->middleware(['Admin'])->group(function () {
-    //     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard'); 
-    //     // user controller in admin 
-    //     Route::resource('users', 'App\Http\Controllers\Admin\UsersController');
-    //     // store controller in admin 
-    //     Route::resource('stores', 'App\Http\Controllers\Admin\StoresController');
-    //     // staff controller in admin 
-    //     Route::resource('staff', 'App\Http\Controllers\Admin\StaffController');
+        Route::post('/update-password', [UserController::class, 'update'])->name('update.password');
 
-    // });
+    });
+        // admins
+    Route::name('admin.')->prefix('admin')->middleware(['admin'])->group(function () {
+        Route::get('/dashboard', ShowUser::class)->name('dashboard'); 
+        //Route::resource('user', 'App\Http\Controllers\Admin\AdminController');
+        Route::get('/user/{id?}', ShowUser::class)->name('user.show');
+
+
+
+    });
 
 
 });

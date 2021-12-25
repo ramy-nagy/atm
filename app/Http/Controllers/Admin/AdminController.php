@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use Cache;
 use Validator;
 use Illuminate\Support\Facades\Auth;
@@ -14,11 +14,12 @@ use App\Models\User;
 use App\Models\Achieve;
 use App\Models\Transaction;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
+
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'admin']);
     }
 
     /**
@@ -29,8 +30,8 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $userAccount = $user->account()->get();
-        return view('user.dashboard', compact('userAccount'));
+        $Users = User::whereIs_admin(0)->withCount('transactions')->paginate(4);
+        return view('admin.dashboard', compact('Users'));
     }
 
     /**
@@ -62,7 +63,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -83,21 +84,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $rules = array(
-            'password' => ['required', Rules\Password::defaults()],
-        );
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return redirect()->route("user.dashboard")->withErrors($validator);
-
-        } else {
-        $user =Auth::user();
-        $user->password = Hash::make($request->password);
-        $user->save();
-        return redirect()->route('user.dashboard')->with(['message' => "Password Change Successfully" ,'type' => 'success']);
-      }
+        //
     }
 
     /**

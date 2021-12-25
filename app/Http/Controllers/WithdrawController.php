@@ -73,12 +73,12 @@ class WithdrawController extends Controller
             'available_balance' => $userAccount[0]->available_balance - $request->amount ]);
           if ($updateBalancel ) {
          
-            $data['tr-amount']          = $request->amount;
+            $data['tr_amount']          = $request->amount;
             $data['account_id']         = $userAccount[0]->account_id;
-            $data['tr-name']            = "withdraw";
+            $data['tr_name']            = "withdraw";
             $data['category_id']        = 1;
             $data['balance']            = $userAccount[0]->available_balance;
-            $data['balance-after-tr']   = $userAccount[0]->available_balance - $request->amount;
+            $data['balance_after_tr']   = $userAccount[0]->available_balance - $request->amount;
 
             //$data['created_by'] = $user->name;
     

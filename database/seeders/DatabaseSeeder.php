@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Category;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,7 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $user = [
+        $users = [
             [
                 'name' => 'Ramy',
                 'role' => 'admin',
@@ -32,8 +33,19 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        foreach ($user as $key => $value) {
-            User::create($value);
+        $categories = [
+            [
+                'name' => 'withdraw',
+            ],
+            [
+                'name' => 'deposit',
+            ],
+        ];
+        foreach ($users as $key => $user) {
+            User::create($user);
+        }
+        foreach ($categories as $key => $Category) {
+            Category::create($Category);
         }
     }
 }
