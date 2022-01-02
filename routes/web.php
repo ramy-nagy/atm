@@ -38,9 +38,10 @@ Route::middleware(['auth'])->group( function() {
     });
         // admins
     Route::name('admin.')->prefix('admin')->middleware(['admin'])->group(function () {
-        Route::get('/dashboard', ShowUser::class)->name('dashboard'); 
-        //Route::resource('user', 'App\Http\Controllers\Admin\AdminController');
-        Route::get('/user/{id?}', ShowUser::class)->name('user.show');
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard'); 
+        Route::put('/make-admin/{id}', [AdminController::class, 'update'])->name('update'); 
+        Route::resource('user', 'App\Http\Controllers\Admin\AdminController');
+        //Route::get('/user/{id?}', ShowUser::class)->name('user.show');
 
 
 

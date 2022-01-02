@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 // Models
 use App\Models\User;
-use App\Models\Achieve;
 use App\Models\Transaction;
 
 class UserController extends Controller
@@ -29,8 +28,9 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $userAccount = $user->account()->get();
-        return view('user.dashboard', compact('userAccount'));
+        $userAccount = $user->account()->withCount('transactions')->get();
+        $lastTransactions = Transaction::whereAccount_id($user->account_id)->latest()->take(1)->get();
+        return view('user.dashboard', compact('userAccount', 'lastTransactions'));
     }
 
     /**

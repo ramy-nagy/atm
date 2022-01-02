@@ -85,7 +85,8 @@
           <li class="dropdown active"><a href="#"><span>{{ Auth::user()->name ?? '' }}</span>
               <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">{{ __('Account ID') }} : <span>{{ Auth::user()->account_id ?? '' }}</span></a></li>
+              <li><a href="#">{{ __('ID') }} : <span>{{ Auth::user()->account_id ?? '' }}</span></a></li>
+              <li><a href="#">{{ __('Role') }} : <span>{{ Auth::user()->role ?? '' }}</span></a></li>
               <li><a onclick="event.preventDefault(); document.getElementById('logout').submit();"
                   href="{{route('logout')}}">{{ __('Log Out') }}</a></li>
             </ul>

@@ -83,7 +83,7 @@ class WithdrawController extends Controller
             //$data['created_by'] = $user->name;
     
             Transaction::create($data);
-            return redirect()->route('user.dashboard')->with(['message' => "Successfully withdraw your available balance  " .$userAccount[0]->available_balance - $request->amount ,'type' => 'success']);
+            return redirect()->route('user.dashboard')->with(['message' => "Successfully withdraw your available balance  " ,'type' => 'success']);
           }
         }
     }

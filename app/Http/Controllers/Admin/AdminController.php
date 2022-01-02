@@ -63,7 +63,13 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        return $id;
+        $user = User::whereAccount_id($id)->get();
+        $transactions = Transaction::where('account_id',$id)->paginate(10);
+        return view('admin.show', [
+            'transactions' => $transactions,
+            'user' => $user,
+
+        ]);
     }
 
     /**
@@ -86,7 +92,12 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $user = User::find($id);
+       $user->role = 'admin';
+       $user->is_admin = 1;
+       $user->save();
+       return redirect()->route('admin.dashboard')->with(['message' => "Successfully update user information " ,'type' => 'success']);
+
     }
 
     /**
