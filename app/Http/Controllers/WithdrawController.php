@@ -64,7 +64,7 @@ class WithdrawController extends Controller
         }elseif ($request->amount % 50 != 0) {
             return redirect()->route('user.withdraw.create')->with(['message' => $request->amount."  is not a multiple of 50 , Please enter the 50EGP and double ",'type' => 'error']);
         
-        }elseif ($request->amount > $userAccount[0]->available_balance) {
+        }elseif ($request->amount > $userAccount[0]->available_balance -50) {
 
             return redirect()->route('user.withdraw.create')->with(['message' => $request->amount." EGP more than your available balance ",'type' => 'error']);
         } else {

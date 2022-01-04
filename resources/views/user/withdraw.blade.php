@@ -22,7 +22,7 @@
               Balance : <span class="alert-link">{{ $account->balance ?? 0}}</span> EGP
             </div>
             <div class="alert alert-primary" role="alert">
-              Available Balance : <span class="alert-link"> {{ $account->available_balance ?? 0}} </span> EGP
+              Available Balance : <span class="alert-link"> {{ $account->available_balance-50 ?? 0}} </span> EGP
             </div>
           </div>
         </div>

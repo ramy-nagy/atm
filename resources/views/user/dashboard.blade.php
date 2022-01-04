@@ -42,11 +42,7 @@
                                     <h4 class="text-primary"><sup></sup>{{ $account->balance ?? 0 }} <span>EGP</span>
                                     </h4>
                                 </div>
-                                <div class="col-lg-6">
-                                    <h3>Available Balance </h3>
-                                    <h4 class="text-primary"><sup></sup>{{ $account->available_balance ?? 0 }}
-                                        <span>EGP</span></h4>
-                                </div>
+                                
                             </div>
                             <div class="my-3 form-group">
                                 <a type="button" class="mx-3" data-bs-dismiss="modal">Close</a>
