@@ -78,11 +78,12 @@
                                         password</label>
                                     <input type="password" class="form-control" name="password" id="password" required />
                                 </div>
-                            </form>
+                           
                         </div>
                         <div class="my-3 form-group">
                             <button type="submit" class="btn btn-primary mb-2">Confirm</button>
                             <a type="button" class="mx-3" data-bs-dismiss="modal">Close</a>
+                             </form>
                         </div>
                     </div>
                 </div>

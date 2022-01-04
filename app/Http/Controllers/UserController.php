@@ -86,7 +86,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $rules = array(
-            'password' => ['required', Rules\Password::defaults()],
+            'password' => ['required'],
         );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
